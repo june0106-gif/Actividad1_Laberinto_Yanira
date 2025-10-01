@@ -2,15 +2,25 @@ using UnityEngine;
 
 public class detectorColisionPared : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    Material materialColorDeLasParedes;
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField]
+    Material materialParedTocada;
+
+    bool paredTocada = false;
+
+    private void OnCollisionEnter(Collision col)
     {
         
+        if (col.gameObject.tag == "Player")
+        {
+            //El punto hace que puedas acceder a esa ubicación
+            Debug.Log(col.gameObject.name);
+            //preguntar pq se pone el parentesis *****
+            gameObject.GetComponent<MeshRenderer>().material = materialParedTocada;
+
+            paredTocada = true;
+        } 
     }
 }
